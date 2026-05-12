@@ -2,6 +2,7 @@
 
 import { getCars } from "@/src/lib/api";
 import CarsList from "@/src/components/CarsList/CarsList";
+import css from "../globals.css";
 
 const Cars = async () => {
   const response = await getCars();

@@ -1,7 +1,8 @@
 // components/CarsList/CarsList.tsx
 
-import { Car } from "@/src/lib/api";
+import { Car } from "..//..//types/car";
 import CarItem from "../CarItem/CarItem";
+import css from "../CarsList/CarsList.module.css";
 
 type Props = {
   cars: Car[];
@@ -9,7 +10,7 @@ type Props = {
 
 const CarsList = ({ cars }: Props) => {
   return (
-    <ul>
+    <ul className={css.carsList}>
       {cars.map((car) => (
         <CarItem key={car.id} item={car} />
       ))}

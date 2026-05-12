@@ -1,0 +1,67 @@
+.carItem {
+    width: calc((100% - 64px) / 3);
+    transition: transform var(--transition);
+}
+
+.carItem:hover,
+.carItem:focus {
+    transform: scale(1.02);
+}
+
+.itemInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title,
+.price {
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.title span {
+    color: var(--button);
+}
+
+.price {
+    padding-right: 11px;
+}
+
+.infoList {
+    display: flex;
+    flex-wrap: wrap;
+
+    color: var(--gray);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+.infoListMain {
+    margin-top: 8px;
+}
+
+.infoListSecondary {
+    margin-top: 4px;
+}
+
+.infoList li:not(:last-child) {
+    margin-right: 6px;
+    padding-right: 6px;
+    border-right: 1px solid var(--gray-light);
+}
+
+.image {
+    width: 100%;
+    height: 268px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin-bottom: 16px;
+}
+
+.button {
+    width: 100%;
+    margin-top: 28px;
+}

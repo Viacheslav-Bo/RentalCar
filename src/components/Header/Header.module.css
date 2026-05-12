@@ -1,18 +1,33 @@
 /* components/Header/Header.module.css */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
 .header {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 24px;
-    padding: 12px;
-    border-block-end: 1px solid #ccc;
+    /* max-width: 1200px; */
+    margin: 0 auto;
+    padding: 24px 120px;
+    border-bottom: 1px solid var(--badges);
+    background-color: var(--badges);
 }
 
 .navigation {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 12px;
-    list-style-type: none;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.2;
+    gap: 32px;
+    list-style: none;
+}
+
+.navigation a.active {
+    color: var(--button-hover);
 }
