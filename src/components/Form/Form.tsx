@@ -1,7 +1,8 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
+import { bookingRequest } from "@/src/lib/api";
 
 import css from "./Form.module.css";
 
@@ -12,29 +13,31 @@ type Props = {
 const Form = ({ carId }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // const form = event.currentTarget;
-    // const formData = new FormData(form);
+    const form = event.currentTarget;
 
-    // const data = {
-    //   carId,
-    //   name: formData.get("name"),
-    //   email: formData.get("email"),
-    //   bookingDate: formData.get("bookingDate"),
-    //   comment: formData.get("comment"),
-    // };
+    const formData = new FormData(form);
+
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      // bookingDate: formData.get("bookingDate") as string,
+      comment: formData.get("comment") as string,
+    };
 
     try {
       setIsLoading(true);
 
-      toast.success("Car booked successfully!");
-      event.currentTarget.reset();
+      await bookingRequest(carId, data);
 
-      //   form.reset();
-    } catch {
-      toast.error("Something went wrong");
+      toast.success("Car booked successfully!");
+
+      form.reset();
+    } catch (error) {
+      toast.error("Failed to send booking");
+      console.log(error);
     } finally {
       setIsLoading(false);
     }
@@ -43,6 +46,7 @@ const Form = ({ carId }: Props) => {
   return (
     <section className={css.booking}>
       <h2 className={css.title}>Book your car now</h2>
+
       <p className={css.text}>
         Stay connected! We are always ready to help you.
       </p>
@@ -64,17 +68,13 @@ const Form = ({ carId }: Props) => {
           required
         />
 
-        <input
-          className={css.input}
-          type="text"
-          name="bookingDate"
-          placeholder="Booking date"
-        />
+        <input className={css.input} type="date" name="bookingDate" />
 
         <textarea
           className={css.textarea}
           name="comment"
           placeholder="Comment"
+          required
         />
 
         <button

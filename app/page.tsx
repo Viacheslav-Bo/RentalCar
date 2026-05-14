@@ -8,7 +8,7 @@ export default function Home() {
       <main className={css.hero}>
         <Image
           className={css.image}
-          src="/710ea4328a5c0351a1a533bf4cc2bd8ac49f2a01.jpg"
+          src="/hero.jpg"
           alt="Rental car"
           fill
           priority

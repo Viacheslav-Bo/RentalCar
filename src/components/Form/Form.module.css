@@ -1,5 +1,5 @@
 .booking {
-    width: 640px;
+    width: 100%;
     padding: 32px;
     border: 1px solid var(--gray-light);
     border-radius: var(--radius-lg);
@@ -19,7 +19,7 @@
 .text {
     margin: 0 0 24px;
 
-    font-weight: 400;
+    font-weight: 500;
     font-size: 16px;
     line-height: 1.25;
 
@@ -49,13 +49,13 @@
 }
 
 .input {
-    height: 56px;
-    padding: 16px 20px;
+    height: 48px;
+    padding: 14px 20px;
 }
 
 .textarea {
     height: 88px;
-    padding: 16px 20px;
+    padding: 12px 20px;
     resize: none;
 }
 

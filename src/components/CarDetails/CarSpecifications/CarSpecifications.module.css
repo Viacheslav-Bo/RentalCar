@@ -1,0 +1,32 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.icon {
+    flex-shrink: 0;
+}

@@ -20,5 +20,15 @@ export interface Car {
 export interface CarsResponse {
   cars: Car[];
   totalCars: number;
-  page: number;
+  page: number | string;
+  totalPages: number;
 }
+
+export type CarsFilters = {
+  page?: number;
+  limit?: number;
+  brand?: string;
+  rentalPrice?: string;
+  minMileage?: string;
+  maxMileage?: string;
+};

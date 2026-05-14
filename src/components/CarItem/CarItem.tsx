@@ -6,42 +6,42 @@ import Image from "next/image";
 import css from "../CarItem/CarItem.module.css";
 
 type Props = {
-  item: Car;
+  car: Car;
 };
 
-const CarItem = ({ item }: Props) => {
+const CarItem = ({ car }: Props) => {
   return (
     <li className={css.carItem}>
       <Image
         className={css.image}
-        src={item.img}
-        alt={`${item.brand} ${item.model}`}
+        src={car.img}
+        alt={`${car.brand} ${car.model}`}
         width={640}
         height={480}
       />
 
       <div className={css.itemInfo}>
         <h2 className={css.title}>
-          {item.brand} <span>{item.model}, </span>
-          {item.year}
+          {car.brand} <span>{car.model}, </span>
+          {car.year}
         </h2>
-        <p className={css.price}>${item.rentalPrice}</p>
+        <p className={css.price}>${car.rentalPrice}</p>
       </div>
 
       <ul className={`${css.infoList} ${css.infoListMain}`}>
-        <li>{item.address.split(", ")[1]}</li>
-        <li>{item.address.split(", ")[2]}</li>
-        <li>{item.rentalCompany}</li>
+        <li>{car.address.split(", ")[1]}</li>
+        <li>{car.address.split(", ")[2]}</li>
+        <li>{car.rentalCompany}</li>
       </ul>
 
       <ul className={`${css.infoList} ${css.infoListSecondary}`}>
-        <li>{item.type}</li>
-        <li>{item.mileage} km</li>
+        <li>{car.type}</li>
+        <li>{car.mileage} km</li>
       </ul>
 
       <Link
         className={`btn ${css.button}`}
-        href={`/catalog/${item.id}`}
+        href={`/catalog/${car.id}`}
         target="_blank"
         rel="noopener noreferrer"
       >
