@@ -19,16 +19,20 @@ export interface Car {
 
 export interface CarsResponse {
   cars: Car[];
-  totalCars: number;
-  page: number | string;
+  page: number;
   totalPages: number;
 }
 
-export type CarsFilters = {
-  page?: number;
-  limit?: number;
+export type FilterParams = {
   brand?: string;
-  rentalPrice?: string;
-  minMileage?: string;
-  maxMileage?: string;
+  rentalPrice?: number;
+  minMileage?: number;
+  maxMileage?: number;
 };
+
+export interface RentalFormData {
+  name: string;
+  email: string;
+  bookingDate: string;
+  comment?: string;
+}

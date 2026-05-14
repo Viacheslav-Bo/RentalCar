@@ -24,7 +24,7 @@ export const getCarFilters = async (filters: CarsFilters) => {
 };
 
 export const getSingleCar = async (id: string) => {
-  const res = await studyApi.get<Car>(`/cars/${id}`);
+  const res = await globalApi.get<Car>(`/cars/${id}`);
   return res.data;
 };
 
