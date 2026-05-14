@@ -1,29 +1,27 @@
-// app/catalog/page.tsx
-
-import { getCars } from "@/src/lib/api";
+import { getFilters } from "@/src/lib/api";
 import CarsList from "@/src/components/CarsList/CarsList";
-
 import Filter from "@/src/components/Filter/Filter";
-
-import type { CarsFilters } from "@/src/types/car";
+import type { FilterParams } from "@/src/types/car";
 
 type Props = {
-  searchParams: Promise<CarsFilters>;
+  searchParams: Promise<FilterParams>;
 };
 
 const Cars = async ({ searchParams }: Props) => {
-  const filters = await searchParams;
+  const raw = await searchParams;
+  const filters: FilterParams = {
+    ...(raw.brand && { brand: raw.brand }),
+    ...(raw.rentalPrice && { rentalPrice: Number(raw.rentalPrice) }),
+    ...(raw.minMileage && { minMileage: Number(raw.minMileage) }),
+    ...(raw.maxMileage && { maxMileage: Number(raw.maxMileage) }),
+  };
 
-  const allCarsResponse = await getCars({ limit: 100 });
-
-  const uniqueBrands = [
-    ...new Set(allCarsResponse.cars.map((car) => car.brand)),
-  ];
+  const { brands, price } = await getFilters();
 
   return (
     <section>
       <h1>Catalog</h1>
-      <Filter brands={uniqueBrands} />
+      <Filter brands={brands} price={price} />
       <CarsList filters={filters} />
     </section>
   );

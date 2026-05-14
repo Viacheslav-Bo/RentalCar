@@ -1,0 +1,66 @@
+.filters {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--grey);
+}
+
+.select {
+  appearance: none;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 40px 14px 18px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--dark);
+  min-width: 224px;
+  cursor: pointer;
+  outline: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%23121417' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  transition: border-color 0.2s;
+}
+
+.select:focus {
+  border-color: var(--blue);
+}
+
+.mileageRow {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.mileageInput {
+  border: none;
+  padding: 14px 18px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--dark);
+  width: 112px;
+  outline: none;
+  background: var(--white);
+}
+
+.mileageInput:first-child {
+  border-right: 1px solid var(--border);
+}
+
+.mileageInput::placeholder {
+  color: var(--grey);
+}

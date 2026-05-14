@@ -5,13 +5,13 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { getCars } from "@/src/lib/api";
-import type { CarsFilters } from "@/src/types/car";
+import type { FilterParams } from "@/src/types/car";
 
 import CarItem from "../CarItem/CarItem";
 import css from "./CarsList.module.css";
 
 type Props = {
-  filters: CarsFilters;
+  filters: FilterParams;
 };
 
 const LIMIT = 12;

@@ -28,6 +28,8 @@ export type FilterParams = {
   rentalPrice?: number;
   minMileage?: number;
   maxMileage?: number;
+  page?: number;
+  limit?: number;
 };
 
 export interface RentalFormData {
