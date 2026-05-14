@@ -29,8 +29,8 @@ const CarItem = ({ car }: Props) => {
       </div>
 
       <ul className={`${css.infoList} ${css.infoListMain}`}>
-        <li>{car.address.split(", ")[1]}</li>
-        <li>{car.address.split(", ")[2]}</li>
+        <li>{car.location.city}</li>
+        <li>{car.location.country}</li>
         <li>{car.rentalCompany}</li>
       </ul>
 

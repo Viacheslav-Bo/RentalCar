@@ -9,8 +9,6 @@ type Props = {
 };
 
 const CarMainInfo = ({ car }: Props) => {
-  const [, city, country] = car.address.split(", ");
-
   return (
     <div className={css.wrapper}>
       <h1 className={css.title}>
@@ -19,7 +17,7 @@ const CarMainInfo = ({ car }: Props) => {
 
       <p className={css.location}>
         <BsGeoAlt className={css.icon} />
-        {city}, {country} | Mileage: {car.mileage} km
+        {car.location.address} | Mileage: {car.mileage} km
       </p>
 
       <p className={css.price}>${car.rentalPrice}</p>

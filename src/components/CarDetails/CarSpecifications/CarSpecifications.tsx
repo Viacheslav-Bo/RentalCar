@@ -31,7 +31,7 @@ const CarSpecifications = ({ car }: Props) => {
 
         <li className={css.item}>
           <BsGear className={css.icon} />
-          Engine Size: {car.engineSize}
+          Engine Size: {car.engine}
         </li>
       </ul>
     </div>

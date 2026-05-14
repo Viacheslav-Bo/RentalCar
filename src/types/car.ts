@@ -7,12 +7,15 @@ export interface Car {
   img: string;
   description: string;
   fuelConsumption: string;
-  engineSize: string;
-  accessories: string[];
-  functionalities: string[];
+  engine: string;
+  features: string[];
   rentalPrice: string;
   rentalCompany: string;
-  address: string;
+  location: {
+    country: string;
+    city: string;
+    address: string;
+  };
   rentalConditions: string[];
   mileage: number;
 }
@@ -25,7 +28,11 @@ export interface CarsResponse {
 
 export type FilterParams = {
   brand?: string;
-  rentalPrice?: number;
+  brands: string[];
+  price: {
+    min: number;
+    max: number;
+  };
   minMileage?: number;
   maxMileage?: number;
   page?: number;
