@@ -16,3 +16,9 @@
     display: block;
     margin: 80px auto 0;
 }
+
+.loaderWrapper {
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+}

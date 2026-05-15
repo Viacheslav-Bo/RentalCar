@@ -1,5 +1,4 @@
 // src/lib/api.ts
-// src/lib/api.ts
 
 import axios from "axios";
 import {
@@ -11,7 +10,7 @@ import {
 import { BookingData } from "../types/booking";
 
 const studyApi = axios.create({
-  baseURL: "https://car-rental-api.goit.study/",
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
 export const getCars = async (filters: FilterParams) => {

@@ -9,6 +9,7 @@ import type { FilterParams } from "@/src/types/car";
 
 import CarItem from "../CarItem/CarItem";
 import css from "./CarsList.module.css";
+import { ClipLoader } from "react-spinners";
 
 type MileageFilter = {
   min?: number;
@@ -64,7 +65,12 @@ const CarsList = ({ filters, mileageFilter }: Props) => {
 
   const cars = data?.cars ?? [];
 
-  if (isLoading) return <p>Loading cars...</p>;
+  if (isLoading)
+    return (
+      <div className={css.loaderWrapper}>
+        <ClipLoader color="#3470ff" size={50} />
+      </div>
+    );
 
   if (isError) return <p>Something went wrong.</p>;
 

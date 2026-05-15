@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/src/components/Header/Header";
 import ReactQueryProvider from "@/src/components/ReactQueryProvider/ReactQueryProvider";
 import { Toaster } from "react-hot-toast";
+import GlobalLoader from "@/src/components/GlobalLoader/GlobalLoader";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -25,6 +26,7 @@ export default function RootLayout({
     <html lang="en" className={manrope.variable} data-scroll-behavior="smooth">
       <body>
         <ReactQueryProvider>
+          <GlobalLoader />
           <Header />
           <main>{children}</main>
           <Toaster position="top-right" />
