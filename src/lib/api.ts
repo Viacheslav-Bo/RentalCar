@@ -10,10 +10,6 @@ import {
 } from "../types/car";
 import { BookingData } from "../types/booking";
 
-// const globalApi = axios.create({
-//   baseURL: "https://car-rental-api.goit.global",
-// });
-
 const studyApi = axios.create({
   baseURL: "https://car-rental-api.goit.study/",
 });
@@ -22,11 +18,6 @@ export const getCars = async (filters: FilterParams) => {
   const res = await studyApi.get<CarsResponse>("/cars", { params: filters });
   return res.data;
 };
-
-// export const getCarFilters = async (filters: FilterParams) => {
-//   const res = await globalApi.post<CarsResponse>("/cars/filters", filters);
-//   return res.data;
-// };
 
 export const getSingleCar = async (id: string) => {
   const res = await studyApi.get<Car>(`/cars/${id}`);

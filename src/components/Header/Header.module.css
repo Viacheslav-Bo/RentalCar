@@ -31,3 +31,13 @@
 .navigation a.active {
     color: var(--button-hover);
 }
+
+.navigation a {
+
+    transition: color 0.2s ease;
+}
+
+.navigation a:hover,
+.navigation a:focus {
+    color: var(--button-hover);
+}

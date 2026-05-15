@@ -17,7 +17,14 @@ const CarMainInfo = ({ car }: Props) => {
 
       <p className={css.location}>
         <BsGeoAlt className={css.icon} />
-        {car.location?.address} | Mileage: {car.mileage} km
+
+        <span className={css.text}>
+          <span>
+            {car.location.city}, {car.location.country}
+          </span>
+
+          <span> Mileage: {car.mileage} km</span>
+        </span>
       </p>
 
       <p className={css.price}>${car.rentalPrice}</p>

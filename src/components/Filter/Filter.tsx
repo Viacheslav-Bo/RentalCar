@@ -4,14 +4,15 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import css from "./Filters.module.css";
 
-const PRICE_OPTIONS = [30, 40, 50, 60, 70, 80];
-
-interface Props {
+type Props = {
   brands: string[];
-  price: { min: number; max: number };
-}
+  price: {
+    min: number;
+    max: number;
+  };
+};
 
-export default function Filter({ brands }: Props) {
+export default function Filter({ brands, price }: Props) {
   const router = useRouter();
   const [brand, setBrand] = useState("");
   const [rentalPrice, setRentalPrice] = useState("");
@@ -47,18 +48,27 @@ export default function Filter({ brands }: Props) {
 
       <div className={css.group}>
         <label className={css.label}>Price / day</label>
+
         <select
           className={css.select}
           value={rentalPrice}
           onChange={(e) => setRentalPrice(e.target.value)}
         >
           <option value="">Any price</option>
-          {PRICE_OPTIONS.map((p) => (
-            <option key={p} value={p}>
-              To ${p}
-            </option>
-          ))}
+
+          {Array.from({ length: 6 }, (_, i) => {
+            const step =
+              price.min + Math.round((price.max - price.min) / 5) * i;
+
+            return (
+              <option key={step} value={step}>
+                To ${step}
+              </option>
+            );
+          })}
         </select>
+
+        <div>{rentalPrice ? `$${rentalPrice}` : "Any price"}</div>
       </div>
 
       <div className={css.group}>

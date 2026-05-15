@@ -1,6 +1,10 @@
 .carItem {
-    width: calc((100% - 64px) / 3);
+    width: calc((100% - 96px) / 4);
     transition: transform var(--transition);
+    display: flex;
+
+    flex-direction: column;
+
 }
 
 .carItem:hover,
@@ -45,6 +49,7 @@
 
 .infoListSecondary {
     margin-top: 4px;
+    margin-bottom: 28px;
 }
 
 .infoList li:not(:last-child) {
@@ -63,5 +68,6 @@
 
 .button {
     width: 100%;
-    margin-top: 28px;
+    margin-top: auto;
+    padding: 0;
 }

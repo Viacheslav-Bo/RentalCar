@@ -19,12 +19,12 @@ const Form = ({ carId }: Props) => {
     const form = event.currentTarget;
 
     const formData = new FormData(form);
+    const commentValue = formData.get("comment") as string;
 
     const data = {
       name: formData.get("name") as string,
       email: formData.get("email") as string,
-      // bookingDate: formData.get("bookingDate") as string,
-      comment: formData.get("comment") as string,
+      ...(commentValue.trim() ? { comment: commentValue } : {}),
     };
 
     try {
@@ -37,6 +37,7 @@ const Form = ({ carId }: Props) => {
       form.reset();
     } catch (error) {
       toast.error("Failed to send booking");
+
       console.log(error);
     } finally {
       setIsLoading(false);
@@ -68,13 +69,10 @@ const Form = ({ carId }: Props) => {
           required
         />
 
-        <input className={css.input} type="date" name="bookingDate" />
-
         <textarea
           className={css.textarea}
           name="comment"
           placeholder="Comment"
-          required
         />
 
         <button
