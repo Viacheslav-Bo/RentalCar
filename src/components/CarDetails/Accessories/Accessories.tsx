@@ -13,10 +13,9 @@ const Accessories = ({ car }: Props) => {
       <h2 className={css.title}>Accessories and functionalities:</h2>
 
       <ul className={css.list}>
-        {[...car.accessories, ...car.functionalities].map((item) => (
+        {car.features.map((item) => (
           <li key={item} className={css.item}>
             <BsCheckCircle className={css.icon} />
-
             {item}
           </li>
         ))}

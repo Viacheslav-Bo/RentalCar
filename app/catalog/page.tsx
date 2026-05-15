@@ -11,9 +11,7 @@ const Cars = async ({ searchParams }: Props) => {
   const raw = await searchParams;
   const filters: FilterParams = {
     ...(raw.brand && { brand: raw.brand }),
-    ...(raw.rentalPrice && { rentalPrice: Number(raw.rentalPrice) }),
-    ...(raw.minMileage && { minMileage: Number(raw.minMileage) }),
-    ...(raw.maxMileage && { maxMileage: Number(raw.maxMileage) }),
+    ...(raw.price && { price: Number(raw.price) }),
   };
 
   const { brands, price } = await getFilters();

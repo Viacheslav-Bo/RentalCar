@@ -14,8 +14,6 @@ type Props = {
   filters: FilterParams;
 };
 
-const LIMIT = 12;
-
 const CarsList = ({ filters }: Props) => {
   const {
     data,
@@ -30,7 +28,7 @@ const CarsList = ({ filters }: Props) => {
       getCars({
         ...filters,
         page: pageParam,
-        limit: LIMIT,
+        perPage: 12,
       }),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {

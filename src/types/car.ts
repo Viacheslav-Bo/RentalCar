@@ -22,21 +22,25 @@ export interface Car {
 
 export interface CarsResponse {
   cars: Car[];
-  page: number;
   totalPages: number;
+  page: number;
 }
 
-export type FilterParams = {
-  brand?: string;
+export type CarFiltersResponse = {
   brands: string[];
   price: {
     min: number;
     max: number;
   };
+};
+
+export type FilterParams = {
+  brand?: string;
+  price?: number;
   minMileage?: number;
   maxMileage?: number;
   page?: number;
-  limit?: number;
+  perPage?: number;
 };
 
 export interface RentalFormData {
