@@ -28,6 +28,11 @@ export default function Filter({ brands, price }: Props) {
     router.push(`/catalog?${params.toString()}`);
   };
 
+  const priceSteps = Array.from(
+    { length: 6 },
+    (_, i) => price.min + Math.round((price.max - price.min) / 5) * i,
+  );
+
   return (
     <div className={css.filters}>
       <div className={css.group}>
@@ -48,27 +53,18 @@ export default function Filter({ brands, price }: Props) {
 
       <div className={css.group}>
         <label className={css.label}>Price / day</label>
-
         <select
           className={css.select}
           value={rentalPrice}
           onChange={(e) => setRentalPrice(e.target.value)}
         >
           <option value="">Any price</option>
-
-          {Array.from({ length: 6 }, (_, i) => {
-            const step =
-              price.min + Math.round((price.max - price.min) / 5) * i;
-
-            return (
-              <option key={step} value={step}>
-                To ${step}
-              </option>
-            );
-          })}
+          {priceSteps.map((step) => (
+            <option key={step} value={step}>
+              To ${step}
+            </option>
+          ))}
         </select>
-
-        <div>{rentalPrice ? `$${rentalPrice}` : "Any price"}</div>
       </div>
 
       <div className={css.group}>

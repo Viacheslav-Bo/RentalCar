@@ -10,11 +10,17 @@ import type { FilterParams } from "@/src/types/car";
 import CarItem from "../CarItem/CarItem";
 import css from "./CarsList.module.css";
 
-type Props = {
-  filters: FilterParams;
+type MileageFilter = {
+  min?: number;
+  max?: number;
 };
 
-const CarsList = ({ filters }: Props) => {
+type Props = {
+  filters: FilterParams;
+  mileageFilter: MileageFilter;
+};
+
+const CarsList = ({ filters, mileageFilter }: Props) => {
   const {
     data,
     fetchNextPage,
@@ -23,7 +29,7 @@ const CarsList = ({ filters }: Props) => {
     isError,
     isLoading,
   } = useInfiniteQuery({
-    queryKey: ["cars", filters],
+    queryKey: ["cars", filters, mileageFilter],
     queryFn: ({ pageParam }) =>
       getCars({
         ...filters,
@@ -38,7 +44,21 @@ const CarsList = ({ filters }: Props) => {
     },
     select: (data) => ({
       ...data,
-      cars: data.pages.flatMap((page) => page.cars),
+      cars: data.pages
+        .flatMap((page) => page.cars)
+        .filter((car) => {
+          if (
+            mileageFilter.min !== undefined &&
+            car.mileage < mileageFilter.min
+          )
+            return false;
+          if (
+            mileageFilter.max !== undefined &&
+            car.mileage > mileageFilter.max
+          )
+            return false;
+          return true;
+        }),
     }),
   });
 
@@ -51,30 +71,28 @@ const CarsList = ({ filters }: Props) => {
   if (cars.length === 0) return <p>No cars found.</p>;
 
   return (
-    <>
-      <div className={css.wrapper}>
-        <ul className={css.carsList}>
-          {cars.map((car) => (
-            <CarItem key={car.id} car={car} />
-          ))}
-        </ul>
+    <div className={css.wrapper}>
+      <ul className={css.carsList}>
+        {cars.map((car) => (
+          <CarItem key={car.id} car={car} />
+        ))}
+      </ul>
 
-        {hasNextPage && (
-          <button
-            className={`btn ${css.loadMore}`}
-            type="button"
-            onClick={() => fetchNextPage()}
-            disabled={!hasNextPage || isFetchingNextPage}
-          >
-            {isFetchingNextPage ?
-              "Loading more..."
-            : hasNextPage ?
-              "Load more"
-            : "Nothing more to load"}
-          </button>
-        )}
-      </div>
-    </>
+      {hasNextPage && (
+        <button
+          className={`btn ${css.loadMore}`}
+          type="button"
+          onClick={() => fetchNextPage()}
+          disabled={!hasNextPage || isFetchingNextPage}
+        >
+          {isFetchingNextPage ?
+            "Loading more..."
+          : hasNextPage ?
+            "Load more"
+          : "Nothing more to load"}
+        </button>
+      )}
+    </div>
   );
 };
 
