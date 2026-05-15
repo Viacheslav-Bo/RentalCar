@@ -10,7 +10,11 @@ type Props = {
 };
 
 const Cars = async ({ searchParams }: Props) => {
-  const raw = await searchParams;
+  const [raw, { brands, price }] = await Promise.all([
+    searchParams,
+    getFilters(),
+  ]);
+
   const filters: FilterParams = {
     ...(raw.brand && { brand: raw.brand }),
     ...(raw.price && { price: Number(raw.price) }),
@@ -21,10 +25,8 @@ const Cars = async ({ searchParams }: Props) => {
     max: raw.maxMileage ? Number(raw.maxMileage) : undefined,
   };
 
-  const { brands, price } = await getFilters();
-
   return (
-    <section>
+    <section className="container">
       <h1>Catalog</h1>
       <Filter brands={brands} price={price} />
       <CarsList filters={filters} mileageFilter={mileageFilter} />

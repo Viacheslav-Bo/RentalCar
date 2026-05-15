@@ -1,0 +1,28 @@
+.btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: transform 0.2s ease;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+
+.iconDefault {
+    color: var(--white);
+    transition: all 0.2s ease;
+}
+
+.iconActive {
+    fill: var(--button-hover);
+}

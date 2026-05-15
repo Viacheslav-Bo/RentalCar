@@ -24,7 +24,7 @@ const CarDetails = async ({ params }: Props) => {
   }
 
   return (
-    <main className={css.wrapper}>
+    <main className={`container ${css.wrapper}`}>
       <div className={css.leftColumn}>
         <Image
           className={css.image}
@@ -34,8 +34,9 @@ const CarDetails = async ({ params }: Props) => {
           height={512}
           priority
         />
-
-        <Form carId={car.id} />
+        <div className={css.desctopForm}>
+          <Form carId={car.id} />
+        </div>
       </div>
 
       <div className={css.rightColumn}>
@@ -51,6 +52,10 @@ const CarDetails = async ({ params }: Props) => {
         <div className={css.section}>
           <Accessories car={car} />
         </div>
+      </div>
+
+      <div className={css.mobileForm}>
+        <Form carId={car.id} />
       </div>
     </main>
   );

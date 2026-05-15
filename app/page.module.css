@@ -1,27 +1,23 @@
 .image {
   object-fit: cover;
   z-index: -1;
+  width: 100%;
 }
 
 .overlay {
   height: 100%;
-
   display: flex;
   justify-content: center;
   align-items: flex-end;
-
   padding-bottom: 60px;
 }
 
 .hero {
   position: relative;
-
   height: 700px;
-
 }
 
 .heroContent {
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,7 +28,6 @@
   font-weight: 700;
   font-size: 60px;
   line-height: 1.2;
-  /* text-align: center; */
   color: var(--white);
 }
 
@@ -41,10 +36,5 @@
   font-weight: 600;
   font-size: 24px;
   line-height: 1.3;
-  /* text-align: center; */
   color: var(--white);
 }
-
-/* .button {
-  width: 276px;
-} */

@@ -4,6 +4,7 @@ import { Car } from "@/src/types/car";
 import Link from "next/link";
 import Image from "next/image";
 import css from "../CarItem/CarItem.module.css";
+import { FavoriteButton } from "../FavoriteButton/FavoriteButton";
 
 type Props = {
   car: Car;
@@ -12,13 +13,16 @@ type Props = {
 const CarItem = ({ car }: Props) => {
   return (
     <li className={css.carItem}>
-      <Image
-        className={css.image}
-        src={car.img}
-        alt={`${car.brand} ${car.model}`}
-        width={640}
-        height={480}
-      />
+      <div className={css.imageWrapper}>
+        <Image
+          className={css.image}
+          src={car.img}
+          alt={`${car.brand} ${car.model}`}
+          width={640}
+          height={480}
+        />
+        <FavoriteButton carId={car.id} />
+      </div>
 
       <div className={css.itemInfo}>
         <h2 className={css.title}>

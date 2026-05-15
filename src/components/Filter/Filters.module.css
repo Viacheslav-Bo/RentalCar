@@ -1,14 +1,15 @@
 .filters {
   display: flex;
-  align-items: flex-end;
-  gap: 18px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
 .group {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
 }
 
 .label {
@@ -26,7 +27,7 @@
   font-size: 16px;
   font-weight: 500;
   color: var(--dark);
-  min-width: 224px;
+  width: 100%;
   cursor: pointer;
   outline: none;
   background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%23121417' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
@@ -52,7 +53,7 @@
   font-size: 16px;
   font-weight: 500;
   color: var(--dark);
-  width: 112px;
+  width: 50%;
   outline: none;
   background: var(--white);
 }
@@ -63,4 +64,45 @@
 
 .mileageInput::placeholder {
   color: var(--grey);
+}
+
+.searchBtn {
+  width: 100%;
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .filters {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 18px;
+  }
+
+  .group {
+    width: calc((100% - 18px) / 2);
+  }
+
+  .searchBtn {
+    width: auto;
+    min-width: 136px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .filters {
+    flex-wrap: nowrap;
+  }
+
+  .group {
+    width: auto;
+  }
+
+  .select {
+    min-width: 224px;
+  }
+
+  .mileageInput {
+    width: 112px;
+  }
 }

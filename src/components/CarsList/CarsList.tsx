@@ -10,6 +10,7 @@ import type { FilterParams } from "@/src/types/car";
 import CarItem from "../CarItem/CarItem";
 import css from "./CarsList.module.css";
 import { ClipLoader } from "react-spinners";
+import toast from "react-hot-toast";
 
 type MileageFilter = {
   min?: number;
@@ -74,7 +75,7 @@ const CarsList = ({ filters, mileageFilter }: Props) => {
 
   if (isError) return <p>Something went wrong.</p>;
 
-  if (cars.length === 0) return <p>No cars found.</p>;
+  if (cars.length === 0) return toast.error("Failed to load cars.");
 
   return (
     <div className={css.wrapper}>
@@ -86,16 +87,12 @@ const CarsList = ({ filters, mileageFilter }: Props) => {
 
       {hasNextPage && (
         <button
-          className={`btn ${css.loadMore}`}
+          className={`btn-outline ${css.loadMore}`}
           type="button"
           onClick={() => fetchNextPage()}
-          disabled={!hasNextPage || isFetchingNextPage}
+          disabled={isFetchingNextPage}
         >
-          {isFetchingNextPage ?
-            "Loading more..."
-          : hasNextPage ?
-            "Load more"
-          : "Nothing more to load"}
+          {isFetchingNextPage ? "Loading more..." : "Load more"}
         </button>
       )}
     </div>

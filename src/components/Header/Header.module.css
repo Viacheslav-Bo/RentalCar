@@ -10,11 +10,12 @@
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    /* max-width: 1200px; */
     margin: 0 auto;
-    padding: 24px 120px;
+    padding: 16px 20px;
     border-bottom: 1px solid var(--badges);
     background-color: var(--badges);
+    min-width: 320px;
+    max-width: 1440px;
 }
 
 .navigation {
@@ -22,9 +23,9 @@
     align-items: center;
     justify-content: flex-start;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.2;
-    gap: 32px;
+    gap: 16px;
     list-style: none;
 }
 
@@ -40,4 +41,36 @@
 .navigation a:hover,
 .navigation a:focus {
     color: var(--button-hover);
+}
+
+@media only screen and (min-width: 768px) {
+    .header {
+        padding: 20px 55px;
+    }
+
+    .navigation {
+        font-size: 15px;
+        gap: 24px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .header {
+        padding: 20px 60px;
+    }
+
+    .navigation {
+        font-size: 16px;
+        gap: 24px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .header {
+        padding: 24px 120px;
+    }
+
+    .navigation {
+        gap: 32px;
+    }
 }

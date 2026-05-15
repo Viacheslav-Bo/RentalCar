@@ -108,15 +108,28 @@ img {
 }
 
 .btn-outline {
-  color: var(--color-black);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 156px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--main);
   background-color: transparent;
   border: 1px solid var(--button);
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition);
 }
 
 .btn-outline:hover,
 .btn-outline:focus {
-  color: var(--white);
-  background-color: var(--button-hover);
+
+  border: 2px solid var(--button-hover);
 }
 
 /* Inputs */
@@ -172,4 +185,38 @@ img {
 #nprogress .bar {
   background: var(--button-hover);
   height: 5px;
+}
+
+
+
+.container {
+  min-width: 320px;
+  max-width: 465px;
+  margin: 0 auto;
+  padding: 32px 20px 124px 20px;
+}
+
+/* media */
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 32px;
+
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+    padding: 64px 120px 124px 120px;
+
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+    padding: 84px 120px 124px 120px;
+  }
 }
