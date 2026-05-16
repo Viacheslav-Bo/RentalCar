@@ -56,10 +56,15 @@ npm run start
 
 ## Project Structure
 
-src/
-├── app/ # Next.js App Router pages
-├── components/ # Reusable UI components
-└── lib/ # API and utilities
+```text
+├── src/
+│   ├── app/            # Next.js App Router pages and layouts
+│   ├── components/     # Reusable UI components
+│   └── lib/            # API clients, helpers, and utilities
+├── README.md
+├── package.json
+└── ...
+```
 
 ## Live Demo
 
