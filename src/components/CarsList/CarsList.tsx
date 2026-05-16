@@ -3,6 +3,7 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 import { getCars } from "@/src/lib/api";
 import type { FilterParams } from "@/src/types/car";
@@ -66,6 +67,12 @@ const CarsList = ({ filters, mileageFilter }: Props) => {
 
   const cars = data?.cars ?? [];
 
+  useEffect(() => {
+    if (isError) {
+      toast.error("Something went wrong.");
+    }
+  }, [isError]);
+
   if (isLoading)
     return (
       <div className={css.loaderWrapper}>
@@ -75,7 +82,9 @@ const CarsList = ({ filters, mileageFilter }: Props) => {
 
   if (isError) return <p>Something went wrong.</p>;
 
-  if (cars.length === 0) return toast.error("Failed to load cars.");
+  if (cars.length === 0) {
+    return <p className={css.empty}>No cars found matching your criteria.</p>;
+  }
 
   return (
     <div className={css.wrapper}>
