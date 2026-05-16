@@ -8,7 +8,7 @@ export default function Home() {
       <main className={css.hero}>
         <Image
           className={css.image}
-          src="/hero.jpg"
+          src="/hero.webp"
           alt="Rental car"
           fill
           sizes="100vw"
