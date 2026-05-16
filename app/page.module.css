@@ -1,9 +1,3 @@
-.image {
-  object-fit: cover;
-  z-index: -1;
-  width: 100%;
-}
-
 .overlay {
   height: 100%;
   display: flex;
@@ -24,12 +18,12 @@
 
 .image {
   object-fit: cover;
+  width: 100%;
+  height: 100%;
   z-index: 0;
 }
 
 .overlay {
-  /* height: 100%; */
-
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg,
@@ -95,5 +89,27 @@
     font-size: 24px;
     margin-bottom: 40px;
     max-width: 783px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .hero {
+    height: 99vh;
+    max-height: 90vh;
+  }
+
+  .title {
+    font-size: 120px;
+    max-width: 1783px;
+  }
+
+  .text {
+    font-size: 50px;
+    margin-bottom: 90px;
+    max-width: 1783px;
+  }
+
+  .overlay {
+    padding-bottom: 150px;
   }
 }

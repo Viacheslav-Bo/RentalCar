@@ -12,6 +12,7 @@ export default function Home() {
           alt="Rental car"
           fill
           sizes="100vw"
+          quality={90}
           priority
         />
         <div className={css.overlay}>
