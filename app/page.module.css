@@ -63,6 +63,10 @@
   max-width: 280px;
 }
 
+.button {
+  font-weight: 600;
+}
+
 @media screen and (min-width: 768px) {
   .title {
     font-size: 48px;

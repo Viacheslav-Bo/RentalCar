@@ -13,6 +13,7 @@ export default function Home() {
           fill
           sizes="100vw"
           priority
+          fetchPriority="high"
         />
         <div className={css.overlay}>
           <div className={css.heroContent}>
