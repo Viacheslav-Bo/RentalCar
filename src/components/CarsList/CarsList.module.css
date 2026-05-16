@@ -1,15 +1,8 @@
-.wrapper {
-    padding-bottom: 124px;
-
-
-}
-
 .carsList {
     display: flex;
     flex-wrap: wrap;
     gap: 48px 32px;
     margin-top: 56px;
-
 }
 
 .loadMore {

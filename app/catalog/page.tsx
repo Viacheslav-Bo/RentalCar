@@ -27,7 +27,7 @@ const Cars = async ({ searchParams }: Props) => {
 
   return (
     <section className="container">
-      <h1>Catalog</h1>
+      <h1 className="visually-hidden">Car Rental Catalog</h1>
       <Filter brands={brands} price={price} />
       <CarsList filters={filters} mileageFilter={mileageFilter} />
     </section>

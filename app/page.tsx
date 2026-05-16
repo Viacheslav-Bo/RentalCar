@@ -11,16 +11,15 @@ export default function Home() {
           src="/hero.jpg"
           alt="Rental car"
           fill
+          sizes="100vw"
           priority
         />
         <div className={css.overlay}>
           <div className={css.heroContent}>
             <h1 className={css.title}>Find your perfect rental car</h1>
-
             <p className={css.text}>
               Reliable and budget-friendly rentals for any journey
             </p>
-
             <Link className={`btn ${css.button}`} href="/catalog">
               View Catalog
             </Link>

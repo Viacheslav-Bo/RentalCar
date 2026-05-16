@@ -188,6 +188,19 @@ img {
 }
 
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* media */
 
 .container {
   min-width: 320px;
@@ -196,13 +209,9 @@ img {
   padding: 32px 20px 124px 20px;
 }
 
-/* media */
-
 @media (min-width: 768px) {
   .container {
     max-width: 768px;
-    padding: 32px;
-
   }
 }
 
