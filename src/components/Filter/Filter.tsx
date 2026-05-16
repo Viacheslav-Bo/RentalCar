@@ -31,10 +31,12 @@ export default function Filter({ brands, price }: Props) {
 
   const handleSearch = () => {
     const params = new URLSearchParams();
-    if (brand) params.set("brand", brand.value);
-    if (rentalPrice) params.set("price", rentalPrice.value);
+
+    if (brand?.value) params.set("brand", brand.value);
+    if (rentalPrice?.value) params.set("price", rentalPrice.value);
     if (minMileage) params.set("minMileage", minMileage);
     if (maxMileage) params.set("maxMileage", maxMileage);
+
     router.push(`/catalog?${params.toString()}`);
   };
 

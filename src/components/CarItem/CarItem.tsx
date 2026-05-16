@@ -8,10 +8,9 @@ import { FavoriteButton } from "../FavoriteButton/FavoriteButton";
 
 type Props = {
   car: Car;
-  index: number;
 };
 
-const CarItem = ({ car, index }: Props) => {
+const CarItem = ({ car }: Props) => {
   return (
     <li className={css.carItem}>
       <div className={css.imageWrapper}>
@@ -21,8 +20,6 @@ const CarItem = ({ car, index }: Props) => {
           alt={`${car.brand} ${car.model}`}
           width={640}
           height={480}
-          priority={index < 2}
-          loading={index < 2 ? "eager" : "lazy"}
         />
         <FavoriteButton carId={car.id} />
       </div>

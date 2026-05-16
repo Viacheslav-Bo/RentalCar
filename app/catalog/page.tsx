@@ -4,9 +4,12 @@ import Filter from "@/src/components/Filter/Filter";
 import type { FilterParams } from "@/src/types/car";
 
 type Props = {
-  searchParams: Promise<
-    FilterParams & { minMileage?: string; maxMileage?: string }
-  >;
+  searchParams: Promise<{
+    brand?: string;
+    price?: string;
+    minMileage?: string;
+    maxMileage?: string;
+  }>;
 };
 
 const Cars = async ({ searchParams }: Props) => {
@@ -18,18 +21,19 @@ const Cars = async ({ searchParams }: Props) => {
   const filters: FilterParams = {
     ...(raw.brand && { brand: raw.brand }),
     ...(raw.price && { price: Number(raw.price) }),
-  };
-
-  const mileageFilter = {
-    min: raw.minMileage ? Number(raw.minMileage) : undefined,
-    max: raw.maxMileage ? Number(raw.maxMileage) : undefined,
+    ...(raw.minMileage && { minMileage: Number(raw.minMileage) }),
+    ...(raw.maxMileage && { maxMileage: Number(raw.maxMileage) }),
+    ...(raw.maxMileage && {
+      minMileage: Number(raw.minMileage) || 0,
+      maxMileage: Number(raw.maxMileage),
+    }),
   };
 
   return (
     <section className="container">
       <h1 className="visually-hidden">Car Rental Catalog</h1>
       <Filter brands={brands} price={price} />
-      <CarsList filters={filters} mileageFilter={mileageFilter} />
+      <CarsList filters={filters} />
     </section>
   );
 };
