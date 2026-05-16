@@ -174,7 +174,7 @@ export default function Filter({ brands, price }: Props) {
             }}
             onBlur={(e) => {
               if (maxMileage) {
-                e.target.value = `To ${Number(maxMileage).toLocaleString()}`;
+                e.target.value = `To ${Number(maxMileage).toLocaleString("en-US")}`;
               }
             }}
           />

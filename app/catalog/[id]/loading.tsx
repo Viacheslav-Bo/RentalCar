@@ -1,5 +1,3 @@
-// app/catalog/loading.tsx
-
 import { ClipLoader } from "react-spinners";
 
 const Loading = () => {
