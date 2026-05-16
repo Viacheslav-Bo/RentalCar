@@ -1,0 +1,74 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+    padding: 40px 0;
+}
+
+.code {
+    font-size: 100px;
+    font-weight: 900;
+    line-height: 1;
+    color: #ef4444;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 16px;
+    color: var(--main);
+}
+
+.text {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--main);
+    max-width: 450px;
+    margin: 16px 0 32px;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonGroup button {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+    .buttonGroup {
+        flex-direction: column;
+        width: 100%;
+        max-width: 280px;
+    }
+
+
+    .buttonGroup :global(.btn),
+    .buttonGroup :global(.btn-outline) {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .code {
+        font-size: 150px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .wrapper {
+        min-height: 70vh;
+    }
+}
