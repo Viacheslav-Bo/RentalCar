@@ -15,6 +15,9 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "RentalCar",
   description: "Created by Viacheslav Bobivnyk",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -24,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={manrope.variable} data-scroll-behavior="smooth">
-      <body>
+      <body className={manrope.className}>
         <ReactQueryProvider>
           <GlobalLoader />
           <Header />

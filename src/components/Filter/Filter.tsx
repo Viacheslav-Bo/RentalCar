@@ -4,7 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import css from "./Filters.module.css";
 
-import Select from "react-select";
+import Select, { components } from "react-select";
+
+import { RiResetLeftFill } from "react-icons/ri";
+
+const selectComponents = {
+  IndicatorSeparator: () => null,
+};
 
 type Option = { label: string; value: string };
 
@@ -67,7 +73,22 @@ export default function Filter({ brands, price }: Props) {
       isSelected: boolean;
       isFocused: boolean;
     }) =>
-      `${css.rsOption} ${isSelected ? css.rsOptionSelected : ""} ${isFocused ? css.rsOptionFocused : ""}`,
+      [
+        css.rsOption,
+        isSelected ? css.rsOptionSelected : "",
+        !isSelected && isFocused ? css.rsOptionFocused : "",
+      ].join(" "),
+  };
+  const brandClassNames = {
+    ...selectClassNames,
+    control: ({ menuIsOpen }: { menuIsOpen: boolean }) =>
+      `${css.rsControl} ${css.rsControlBrand} ${menuIsOpen ? css.rsControlOpen : ""}`,
+  };
+
+  const priceClassNames = {
+    ...selectClassNames,
+    control: ({ menuIsOpen }: { menuIsOpen: boolean }) =>
+      `${css.rsControl} ${css.rsControlPrice} ${menuIsOpen ? css.rsControlOpen : ""}`,
   };
 
   return (
@@ -75,28 +96,28 @@ export default function Filter({ brands, price }: Props) {
       <div className={css.group}>
         <label className={css.label}>Car brand</label>
         <Select
+          classNames={brandClassNames}
+          components={selectComponents}
           instanceId="brand-select"
           unstyled
-          classNames={selectClassNames}
           options={brandOptions}
           value={brand}
           onChange={(opt) => setBrand(opt)}
           placeholder="Choose a brand"
-          isClearable
         />
       </div>
 
       <div className={css.group}>
         <label className={css.label}>Price / hour</label>
         <Select
+          classNames={priceClassNames}
+          components={selectComponents}
           instanceId="price-select"
           unstyled
-          classNames={selectClassNames}
           options={priceOptions}
           value={rentalPrice}
           onChange={(opt) => setRentalPrice(opt)}
           placeholder="Choose a price"
-          isClearable
         />
       </div>
 
@@ -105,19 +126,49 @@ export default function Filter({ brands, price }: Props) {
         <div className={css.mileageRow}>
           <input
             className={css.mileageInput}
-            type="number"
+            type="text"
+            inputMode="numeric"
             placeholder="From"
-            value={minMileage}
-            onChange={(e) => setMinMileage(e.target.value)}
-            min={0}
+            value={
+              minMileage ?
+                `From ${Number(minMileage).toLocaleString("en-US")}`
+              : ""
+            }
+            onChange={(e) => {
+              const raw = e.target.value.replace(/\D/g, "");
+              setMinMileage(raw);
+            }}
+            onFocus={(e) => {
+              e.target.value = minMileage;
+            }}
+            onBlur={(e) => {
+              if (minMileage) {
+                e.target.value = `From ${Number(minMileage).toLocaleString("en-US")}`;
+              }
+            }}
           />
           <input
             className={css.mileageInput}
-            type="number"
+            type="text"
+            inputMode="numeric"
             placeholder="To"
-            value={maxMileage}
-            onChange={(e) => setMaxMileage(e.target.value)}
-            min={0}
+            value={
+              maxMileage ?
+                `To ${Number(maxMileage).toLocaleString("en-US")}`
+              : ""
+            }
+            onChange={(e) => {
+              const raw = e.target.value.replace(/\D/g, "");
+              setMaxMileage(raw);
+            }}
+            onFocus={(e) => {
+              e.target.value = maxMileage;
+            }}
+            onBlur={(e) => {
+              if (maxMileage) {
+                e.target.value = `To ${Number(maxMileage).toLocaleString()}`;
+              }
+            }}
           />
         </div>
       </div>
@@ -125,9 +176,23 @@ export default function Filter({ brands, price }: Props) {
       <button className={`btn ${css.searchBtn}`} onClick={handleSearch}>
         Search
       </button>
-      <button className={`btn ${css.searchBtn}`} onClick={handleReset}>
-        Reset
-      </button>
+      {(brand || rentalPrice || minMileage || maxMileage) && (
+        <button
+          className="resetBtn"
+          onClick={handleReset}
+          style={{
+            visibility:
+              brand || rentalPrice || minMileage || maxMileage ?
+                "visible"
+              : "hidden",
+          }}
+        >
+          <span className={css.resetIcon}>
+            <RiResetLeftFill />
+          </span>
+          <span className={css.resetText}>Reset</span>
+        </button>
+      )}
     </div>
   );
 }

@@ -89,8 +89,8 @@ const CarsList = ({ filters, mileageFilter }: Props) => {
   return (
     <div className={css.wrapper}>
       <ul className={css.carsList}>
-        {cars.map((car) => (
-          <CarItem key={car.id} car={car} />
+        {cars.map((car, index) => (
+          <CarItem key={car.id} car={car} index={index} />
         ))}
       </ul>
 

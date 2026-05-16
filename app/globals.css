@@ -132,6 +132,35 @@ img {
   border: 2px solid var(--button-hover);
 }
 
+
+
+.resetBtn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 12px 12px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--white);
+  background-color: var(--button);
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition);
+}
+
+.resetBtn:hover,
+.resetBtn:focus {
+  background-color: var(--button-hover);
+}
+
+
+
+
 /* Inputs */
 
 .input,
@@ -200,32 +229,61 @@ img {
   border: 0;
 }
 
+#nprogress .bar {
+  top: 49px !important;
+  background: var(--button) !important;
+}
+
 /* media */
 
 .container {
   min-width: 320px;
   max-width: 465px;
   margin: 0 auto;
-  padding: 32px 20px 124px 20px;
+  padding: 81px 20px 124px 20px;
 }
 
 @media (min-width: 768px) {
   .container {
     max-width: 768px;
+    padding-top: 90px;
+  }
+
+  #nprogress .bar {
+    top: 58px !important;
+  }
+
+  .resetBtn {
+    width: 169px;
+    padding: 0;
   }
 }
 
 @media (min-width: 1200px) {
   .container {
     max-width: 1200px;
-    padding: 64px 120px 124px 120px;
+    padding: 123px 120px 124px 120px;
+  }
 
+  #nprogress .bar {
+    top: 59px !important;
+  }
+
+  .resetBtn {
+    width: 44px;
+    padding: 0;
+    flex-shrink: 0;
   }
 }
 
 @media (min-width: 1440px) {
   .container {
     max-width: 1440px;
-    padding: 84px 120px 124px 120px;
+    padding: 151px 120px 124px 120px;
   }
+
+  #nprogress .bar {
+    top: 67px !important;
+  }
+
 }
