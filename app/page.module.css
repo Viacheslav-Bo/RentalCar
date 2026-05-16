@@ -65,6 +65,7 @@
 
 .button {
   font-weight: 500;
+  font-size: 13px;
 }
 
 @media screen and (min-width: 768px) {
@@ -80,6 +81,11 @@
 
   .overlay {
     padding-bottom: 60px;
+  }
+
+  .button {
+    font-weight: 600;
+    font-size: 16px;
   }
 }
 
