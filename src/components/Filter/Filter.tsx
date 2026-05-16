@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import css from "./Filters.module.css";
 
-import Select, { components } from "react-select";
+import Select from "react-select";
 
 import { RiResetLeftFill } from "react-icons/ri";
 
