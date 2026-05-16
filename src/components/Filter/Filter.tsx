@@ -46,12 +46,18 @@ export default function Filter({ brands, price }: Props) {
     router.push("/catalog");
   };
 
-  const brandOptions: Option[] = brands.map((b) => ({ label: b, value: b }));
+  const brandOptions: Option[] = [
+    { label: "Choose a brand", value: "" },
+    ...brands.map((b) => ({ label: b, value: b })),
+  ];
 
-  const priceOptions: Option[] = Array.from({ length: 6 }, (_, i) => {
-    const val = price.min + Math.round((price.max - price.min) / 5) * i;
-    return { label: `To $${val}`, value: String(val) };
-  });
+  const priceOptions: Option[] = [
+    { label: "Choose a price", value: "" },
+    ...Array.from({ length: 6 }, (_, i) => {
+      const val = price.min + Math.round((price.max - price.min) / 5) * i;
+      return { label: `To $${val}`, value: String(val) };
+    }),
+  ];
 
   const selectClassNames = {
     control: ({ menuIsOpen }: { menuIsOpen: boolean }) =>
@@ -102,7 +108,7 @@ export default function Filter({ brands, price }: Props) {
           unstyled
           options={brandOptions}
           value={brand}
-          onChange={(opt) => setBrand(opt)}
+          onChange={(opt) => setBrand(opt?.value ? opt : null)}
           placeholder="Choose a brand"
         />
       </div>
@@ -116,7 +122,7 @@ export default function Filter({ brands, price }: Props) {
           unstyled
           options={priceOptions}
           value={rentalPrice}
-          onChange={(opt) => setRentalPrice(opt)}
+          onChange={(opt) => setRentalPrice(opt?.value ? opt : null)}
           placeholder="Choose a price"
         />
       </div>

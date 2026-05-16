@@ -33,3 +33,23 @@ export const getFilters = async (): Promise<CarFiltersResponse> => {
   const res = await studyApi.get<CarFiltersResponse>("/cars/filters");
   return res.data;
 };
+
+export const getAllCars = async (filters: FilterParams) => {
+  const firstPage = await studyApi.get<CarsResponse>("/cars", {
+    params: { ...filters, page: 1, perPage: 12 },
+  });
+
+  const { totalPages } = firstPage.data;
+
+  if (totalPages <= 1) return firstPage.data.cars;
+
+  const restPages = await Promise.all(
+    Array.from({ length: totalPages - 1 }, (_, i) =>
+      studyApi.get<CarsResponse>("/cars", {
+        params: { ...filters, page: i + 2, perPage: 12 },
+      }),
+    ),
+  );
+
+  return [...firstPage.data.cars, ...restPages.flatMap((res) => res.data.cars)];
+};

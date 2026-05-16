@@ -1,7 +1,13 @@
 // app/catalog/loading.tsx
 
+import { ClipLoader } from "react-spinners";
+
 const Loading = () => {
-  return <p>Завантаження catalog...</p>;
+  return (
+    <div style={{ display: "flex", justifyContent: "center", padding: "40px" }}>
+      <ClipLoader color="#3470ff" size={50} />
+    </div>
+  );
 };
 
 export default Loading;
