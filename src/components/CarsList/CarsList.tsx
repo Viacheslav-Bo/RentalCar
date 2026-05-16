@@ -1,7 +1,7 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { getCars } from "@/src/lib/api";
 import type { FilterParams } from "@/src/types/car";
@@ -21,21 +21,9 @@ type Props = {
 };
 
 const CarsList = ({ filters, mileageFilter }: Props) => {
-  const [visibleCount, setVisibleCount] = useState(12);
-  const [prevFiltersKey, setPrevFiltersKey] = useState(
-    JSON.stringify({ filters, mileageFilter }),
-  );
-
-  const filtersKey = JSON.stringify({ filters, mileageFilter });
-
-  if (prevFiltersKey !== filtersKey) {
-    setPrevFiltersKey(filtersKey);
-    setVisibleCount(12);
-  }
-
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isError } =
     useInfiniteQuery({
-      queryKey: ["cars", filters],
+      queryKey: ["cars", filters, mileageFilter],
       queryFn: ({ pageParam }) =>
         getCars({ ...filters, page: pageParam, perPage: 12 }),
       initialPageParam: 1,
@@ -43,13 +31,8 @@ const CarsList = ({ filters, mileageFilter }: Props) => {
         const nextPage = Number(lastPage.page) + 1;
         return nextPage <= Number(lastPage.totalPages) ? nextPage : undefined;
       },
+      gcTime: 0,
     });
-
-  useEffect(() => {
-    if (hasNextPage && !isFetchingNextPage) {
-      fetchNextPage();
-    }
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   useEffect(() => {
     if (isError) toast.error("Something went wrong.");
@@ -65,30 +48,47 @@ const CarsList = ({ filters, mileageFilter }: Props) => {
     return true;
   });
 
-  const visibleCars = filteredCars.slice(0, visibleCount);
-  const hasMore = visibleCount < filteredCars.length;
+  useEffect(() => {
+    const isMileageFilterActive =
+      mileageFilter.min !== undefined || mileageFilter.max !== undefined;
+
+    if (!isMileageFilterActive) return;
+
+    if (hasNextPage && !isFetchingNextPage && filteredCars.length < 12) {
+      fetchNextPage();
+    }
+  }, [
+    filteredCars.length,
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
+    mileageFilter,
+  ]);
 
   if (isError) return <p>Something went wrong.</p>;
 
-  if (filteredCars.length === 0)
+  if (filteredCars.length === 0 && !isFetchingNextPage && !hasNextPage)
     return <p className={css.empty}>No cars found matching your criteria.</p>;
 
   return (
     <div className={css.wrapper}>
       <ul className={css.carsList}>
-        {visibleCars.map((car, index) => (
+        {filteredCars.map((car, index) => (
           <CarItem key={car.id} car={car} index={index} />
         ))}
       </ul>
 
-      {(hasMore || isFetchingNextPage) && (
+      {isFetchingNextPage && (
+        <p className={css.loadingText}>Loading more matching cars...</p>
+      )}
+
+      {hasNextPage && !isFetchingNextPage && filteredCars.length > 0 && (
         <button
           className={`btn-outline ${css.loadMore}`}
           type="button"
-          onClick={() => setVisibleCount((prev) => prev + 12)}
-          disabled={isFetchingNextPage}
+          onClick={() => fetchNextPage()}
         >
-          {isFetchingNextPage ? "Loading..." : "Load more"}
+          Load more
         </button>
       )}
     </div>
