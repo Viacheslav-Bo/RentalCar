@@ -1,7 +1,10 @@
 "use client";
+import CalendarContainer from "@/src/components/CalendarContainer/CalendarContainer";
 
 import { useState } from "react";
 import toast from "react-hot-toast";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { bookingRequest } from "@/src/lib/api";
 
 import css from "./Form.module.css";
@@ -12,6 +15,7 @@ type Props = {
 
 const Form = ({ carId }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [rentalDate, setRentalDate] = useState<Date | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,6 +39,7 @@ const Form = ({ carId }: Props) => {
       toast.success("Car booked successfully!");
 
       form.reset();
+      setRentalDate(null);
     } catch (error) {
       toast.error("Failed to send booking");
 
@@ -67,6 +72,18 @@ const Form = ({ carId }: Props) => {
           name="email"
           placeholder="Email*"
           required
+        />
+
+        <DatePicker
+          selected={rentalDate}
+          onChange={(date: Date | null) => setRentalDate(date)}
+          minDate={new Date()}
+          placeholderText="Booking date"
+          dateFormat="dd/MM/yyyy"
+          className={css.input}
+          wrapperClassName={css.dateWrapper}
+          calendarContainer={CalendarContainer}
+          portalId="datepicker-portal"
         />
 
         <textarea

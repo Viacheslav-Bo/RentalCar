@@ -33,6 +33,7 @@ export default function RootLayout({
           <Header />
           <main className="main-content">{children}</main>
           <Toaster position="top-right" />
+          <div id="datepicker-portal" />
         </ReactQueryProvider>
       </body>
     </html>
