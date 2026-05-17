@@ -1,31 +1,23 @@
 "use client";
 import css from "./FavoriteButton.module.css";
 import { BsFillHeartFill, BsHeart } from "react-icons/bs";
-import { useState } from "react";
+import { useFavoritesStore } from "@/src/store/useFavoritesStore";
 
 export const FavoriteButton = ({ carId }: { carId: string }) => {
-  const getFavorites = () => {
-    const saved = localStorage.getItem("favorites");
-    return saved ? (JSON.parse(saved) as string[]) : [];
-  };
+  const favorites = useFavoritesStore((state) => state.favorites);
+  const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
 
-  const [active, setActive] = useState(() => getFavorites().includes(carId));
+  const active = favorites.includes(carId);
 
-  const toggleFavorite = (e: React.MouseEvent) => {
+  const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    const prev = getFavorites();
-    const next =
-      prev.includes(carId) ?
-        prev.filter((id) => id !== carId)
-      : [...prev, carId];
-    localStorage.setItem("favorites", JSON.stringify(next));
-    setActive(!active);
+    toggleFavorite(carId);
   };
 
   return (
     <button
       className={css.btn}
-      onClick={toggleFavorite}
+      onClick={handleClick}
       aria-label={active ? "Видалити з обраного" : "Додати до обраного"}
     >
       {active ?
