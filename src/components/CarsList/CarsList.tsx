@@ -9,6 +9,7 @@ import type { FilterParams } from "@/src/types/car";
 
 import CarItem from "../CarItem/CarItem";
 import css from "./CarsList.module.css";
+import { ClipLoader } from "react-spinners";
 
 type Props = {
   filters: FilterParams;
@@ -47,6 +48,14 @@ const CarsList = ({ filters }: Props) => {
   const cars = data?.pages.flatMap((p) => p.cars) ?? [];
 
   if (isError) return <p>Something went wrong.</p>;
+
+  if (isLoading)
+    return (
+      <div className={css.loaderWrapper}>
+        <ClipLoader color="var(--button)" size={50} />
+      </div>
+    );
+
   if (!isLoading && cars.length === 0) {
     return <p className={css.empty}>No cars found</p>;
   }
