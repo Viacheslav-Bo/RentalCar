@@ -75,3 +75,8 @@
     margin: 8px auto 0;
     padding: 12px 51px;
 }
+
+.dateWrapper {
+    width: 100%;
+    position: relative;
+}

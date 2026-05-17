@@ -1,7 +1,7 @@
 "use client";
 import CalendarContainer from "@/src/components/CalendarContainer/CalendarContainer";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -16,6 +16,19 @@ type Props = {
 const Form = ({ carId }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [rentalDate, setRentalDate] = useState<Date | null>(null);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+
+  useEffect(() => {
+    if (isCalendarOpen) {
+      document.body.style.paddingBottom = "104px";
+    } else {
+      document.body.style.paddingBottom = "0px";
+    }
+
+    return () => {
+      document.body.style.paddingBottom = "0px";
+    };
+  }, [isCalendarOpen]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -75,6 +88,8 @@ const Form = ({ carId }: Props) => {
         />
 
         <DatePicker
+          onCalendarOpen={() => setIsCalendarOpen(true)}
+          onCalendarClose={() => setIsCalendarOpen(false)}
           selected={rentalDate}
           onChange={(date: Date | null) => setRentalDate(date)}
           minDate={new Date()}
