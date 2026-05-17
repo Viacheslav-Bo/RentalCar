@@ -69,3 +69,10 @@ npm run start
 ## Live Demo
 
 [View on Vercel](https://bobivnyk-rental-car.vercel.app/)
+
+
+## Author
+
+**Viacheslav Bobivnyk**
+
+- GitHub: [@Viacheslav-Bo](https://github.com/Viacheslav-Bo)
