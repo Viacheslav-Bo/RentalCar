@@ -112,6 +112,24 @@ export default function Filter({ brands, price }: Props) {
           value={brand}
           onChange={(opt) => setBrand(opt?.value ? opt : null)}
           placeholder="Choose a brand"
+          styles={{
+            menuList: (base) => ({
+              ...base,
+              scrollbarWidth: "thin",
+              scrollbarColor: "#D9D9D9 transparent",
+              "::-webkit-scrollbar": {
+                width: "8px",
+              },
+              "::-webkit-scrollbar-track": {
+                background: "transparent",
+              },
+              "::-webkit-scrollbar-thumb": {
+                background: "#D9D9D9",
+                borderRadius: "10px",
+                minHeight: "128px",
+              },
+            }),
+          }}
         />
       </div>
 

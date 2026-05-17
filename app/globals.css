@@ -124,12 +124,14 @@ img {
     background-color var(--transition),
     border-color var(--transition),
     color var(--transition);
+  transform: var(--transition);
 }
 
 .btn-outline:hover,
 .btn-outline:focus {
 
-  border: 2px solid var(--button-hover);
+  border: 1px solid var(--button-hover);
+  transform: scale(1.01);
 }
 
 

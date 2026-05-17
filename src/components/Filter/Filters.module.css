@@ -37,6 +37,13 @@
   cursor: pointer;
   transition: border-radius 0.2s;
   height: 44px;
+  border: 1px solid transparent;
+  transition: border-color 0.2s, border-radius 0.2s;
+}
+
+.rsControl:hover,
+.rsControlOpen {
+  border-color: var(--button-hover);
 }
 
 .rsControlBrand {
@@ -118,6 +125,13 @@
   border-radius: 14px;
   overflow: hidden;
   height: 44px;
+  border: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.mileageRow:hover,
+.mileageRow:focus-within {
+  border-color: var(--button-hover);
 }
 
 .mileageInput {
