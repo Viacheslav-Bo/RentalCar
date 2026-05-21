@@ -1,5 +1,3 @@
-// app/not-found.tsx
-
 import Link from "next/link";
 import css from "./not-found.module.css";
 

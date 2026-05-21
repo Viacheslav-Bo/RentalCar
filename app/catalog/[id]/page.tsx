@@ -1,4 +1,3 @@
-// app/catalog/[id]/page.tsx
 import Image from "next/image";
 import { notFound } from "next/navigation";
 

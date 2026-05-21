@@ -1,5 +1,3 @@
-// components/CarItem/CarItem.tsx
-
 import { Car } from "@/src/types/car";
 import Link from "next/link";
 import Image from "next/image";
