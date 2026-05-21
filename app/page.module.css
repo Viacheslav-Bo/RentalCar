@@ -1,20 +1,22 @@
 .overlay {
-  height: 100%;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.4) 100%);
   display: flex;
-  justify-content: center;
   align-items: flex-end;
-  padding-top: 49px;
+  justify-content: center;
   padding-bottom: 60px;
-  box-sizing: border-box;
+  z-index: 1;
 }
 
 .hero {
   position: relative;
   width: 100%;
-  height: 100dvh;
+  height: calc(100dvh - 49px);
   overflow: hidden;
   background-color: var(--gray);
-
 }
 
 .image {
@@ -24,18 +26,7 @@
   z-index: 0;
 }
 
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg,
-      rgba(0, 0, 0, 0.2) 0%,
-      rgba(0, 0, 0, 0.4) 100%);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 40px;
-  z-index: 1;
-}
+
 
 .heroContent {
   display: flex;
@@ -70,8 +61,8 @@
 }
 
 @media screen and (min-width: 768px) {
-  .overlay {
-    padding-top: 58px;
+  .hero {
+    height: calc(100dvh - 58px);
   }
 
   .title {
@@ -90,15 +81,11 @@
   }
 }
 
-@media screen and (min-width: 1200px) {
-  .overlay {
-    padding-top: 59px;
-  }
-}
+@media screen and (min-width: 1200px) {}
 
 @media screen and (min-width: 1440px) {
-  .overlay {
-    padding-top: 67px;
+  .hero {
+    height: calc(100dvh - 67px);
   }
 
   .title {
@@ -115,7 +102,6 @@
 
 @media screen and (min-width: 2560px) {
   .overlay {
-    padding-top: 68px;
     padding-bottom: 150px;
   }
 

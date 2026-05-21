@@ -45,6 +45,10 @@
     object-fit: cover;
 }
 
+.containerId {
+    padding-bottom: 84px;
+}
+
 @media (min-width: 768px) {
 
     .wrapper {

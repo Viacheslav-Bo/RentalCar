@@ -23,7 +23,7 @@ const CarDetails = async ({ params }: Props) => {
   }
 
   return (
-    <main className={`container ${css.wrapper}`}>
+    <main className={` container ${css.containerId} ${css.wrapper}`}>
       <div className={css.leftColumn}>
         <Image
           className={css.image}

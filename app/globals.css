@@ -29,6 +29,7 @@
 
 html {
   scroll-behavior: smooth;
+  box-sizing: border-box;
 }
 
 body {
@@ -38,6 +39,19 @@ body {
   background-color: var(--white);
   font-size: 14px;
   line-height: 1.5;
+  padding-top: 49px;
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-top: 58px;
+  }
+}
+
+@media (min-width: 1440px) {
+  body {
+    padding-top: 67px;
+  }
 }
 
 section {
@@ -242,13 +256,12 @@ img {
   min-width: 320px;
   max-width: 465px;
   margin: 0 auto;
-  padding: 81px 20px 124px 20px;
+  padding: 60px 20px 124px 20px;
 }
 
 @media (min-width: 768px) {
   .container {
     max-width: 768px;
-    padding-top: 90px;
   }
 
   #nprogress .bar {
@@ -264,7 +277,7 @@ img {
 @media (min-width: 1200px) {
   .container {
     max-width: 1200px;
-    padding: 123px 120px 124px 120px;
+    padding: 84px 120px 124px 120px;
   }
 
   #nprogress .bar {
@@ -281,7 +294,6 @@ img {
 @media (min-width: 1440px) {
   .container {
     max-width: 1440px;
-    padding: 151px 120px 124px 120px;
   }
 
   #nprogress .bar {
@@ -301,7 +313,11 @@ img {
   color: #8d929a !important;
   font-size: 12px !important;
   font-weight: 500 !important;
-  margin: 0 0 12px 0 !important;
+  width: 30px !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+
 }
 
 .react-datepicker__day {
@@ -338,7 +354,7 @@ img {
 .react-datepicker__day-names {
   border-bottom: 1px solid var(--button) !important;
   margin: 0 !important;
-  padding: 0 !important;
+  padding: 0 0 12px 0 !important;
 }
 
 .react-datepicker__header {
