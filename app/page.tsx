@@ -21,7 +21,7 @@ export default function Home() {
             <p className={css.text}>
               Reliable and budget-friendly rentals for any journey
             </p>
-            <Link className={`btn ${css.button}`} href="/catalog">
+            <Link className={`btn btn-ps ${css.button}`} href="/catalog">
               View Catalog
             </Link>
           </div>
