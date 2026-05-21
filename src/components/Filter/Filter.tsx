@@ -149,54 +149,40 @@ export default function Filter({ brands, price }: Props) {
 
       <div className={css.group}>
         <label className={css.label}>Car mileage / km</label>
-        <div className={css.mileageRow}>
-          <input
-            className={css.mileageInput}
-            type="text"
-            inputMode="numeric"
-            placeholder="From"
-            value={
-              minMileage ?
-                `From ${Number(minMileage).toLocaleString("en-US")}`
-              : ""
-            }
-            onChange={(e) => {
-              const raw = e.target.value.replace(/\D/g, "");
-              setMinMileage(raw);
-            }}
-            onFocus={(e) => {
-              e.target.value = minMileage;
-            }}
-            onBlur={(e) => {
-              if (minMileage) {
-                e.target.value = `From ${Number(minMileage).toLocaleString("en-US")}`;
+        <fieldset className={css.mileageRow}>
+          <div className={css.mileageHalf}>
+            <span className={css.prefix}>From</span>
+            <input
+              className={css.mileageInput}
+              type="text"
+              inputMode="numeric"
+              placeholder=" "
+              value={
+                minMileage ? Number(minMileage).toLocaleString("en-US") : ""
               }
-            }}
-          />
-          <input
-            className={css.mileageInput}
-            type="text"
-            inputMode="numeric"
-            placeholder="To"
-            value={
-              maxMileage ?
-                `To ${Number(maxMileage).toLocaleString("en-US")}`
-              : ""
-            }
-            onChange={(e) => {
-              const raw = e.target.value.replace(/\D/g, "");
-              setMaxMileage(raw);
-            }}
-            onFocus={(e) => {
-              e.target.value = maxMileage;
-            }}
-            onBlur={(e) => {
-              if (maxMileage) {
-                e.target.value = `To ${Number(maxMileage).toLocaleString("en-US")}`;
+              onChange={(e) => {
+                const raw = e.target.value.replace(/,/g, "").replace(/\D/g, "");
+                setMinMileage(raw);
+              }}
+            />
+          </div>
+          <div className={css.mileageHalf}>
+            <span className={css.prefix}>To</span>
+            <input
+              className={css.mileageInput}
+              type="text"
+              inputMode="numeric"
+              placeholder=" "
+              value={
+                maxMileage ? Number(maxMileage).toLocaleString("en-US") : ""
               }
-            }}
-          />
-        </div>
+              onChange={(e) => {
+                const raw = e.target.value.replace(/,/g, "").replace(/\D/g, "");
+                setMaxMileage(raw);
+              }}
+            />
+          </div>
+        </fieldset>
       </div>
 
       <button className={`btn ${css.searchBtn}`} onClick={handleSearch}>

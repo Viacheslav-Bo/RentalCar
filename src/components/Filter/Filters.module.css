@@ -3,10 +3,8 @@
   flex-direction: column;
   gap: 16px;
   margin-bottom: 32px;
-
   position: relative;
   z-index: 20;
-
 }
 
 .group {
@@ -29,20 +27,23 @@
   align-items: center;
   background: var(--inputs);
   border: none;
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   padding-left: 16px;
   padding-right: 16px;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
-  transition: border-radius 0.2s;
   height: 44px;
   border: 1px solid transparent;
-  transition: border-color 0.2s, border-radius 0.2s;
+  transition: border-color var(--transition), border-radius var(--transition);
 }
 
 .rsControl:hover,
 .rsControlOpen {
+  border-color: var(--button-hover);
+}
+
+.rsControl:focus-within {
   border-color: var(--button-hover);
 }
 
@@ -73,7 +74,7 @@
   display: flex;
   padding: 0;
   margin-left: auto;
-  transition: transform 0.2s ease;
+  transition: var(--transition);
 }
 
 .rsDropdownIndicatorOpen {
@@ -105,7 +106,7 @@
   line-height: 1.2;
   color: var(--gray);
   cursor: pointer;
-  transition: color 0.15s;
+  transition: color var(--transition);
 }
 
 .rsOptionFocused {
@@ -122,11 +123,17 @@
 .mileageRow {
   display: flex;
   background: var(--inputs);
-  border-radius: 14px;
+  border: none;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   height: 44px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-inline-size: auto;
   border: 1px solid transparent;
-  transition: border-color 0.2s;
+  transition: border-color var(--transition), border-radius var(--transition);
+
 }
 
 .mileageRow:hover,
@@ -134,24 +141,33 @@
   border-color: var(--button-hover);
 }
 
-.mileageInput {
-  border: none;
-  padding: 14px 18px;
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--main);
+.mileageHalf {
+  display: flex;
+  align-items: center;
   width: 50%;
-  outline: none;
-  background: transparent;
+  padding: 0 16px;
 }
 
-.mileageInput:first-child {
+.mileageHalf:first-child {
   border-right: 1px solid var(--gray-light);
 }
 
-.mileageInput::placeholder {
+.mileageInput {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--main);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.prefix {
   color: var(--main);
   font-weight: 500;
+  margin-right: 8px;
+  flex-shrink: 0;
+  font-size: 16px;
 }
 
 
@@ -168,6 +184,8 @@
   display: inline;
   width: 100%;
 }
+
+
 
 @media (min-width: 768px) {
   .filters {
@@ -207,9 +225,6 @@
     width: 320px;
   }
 
-  .mileageInput {
-    width: 50%;
-  }
 
   .resetIcon {
     display: flex;
